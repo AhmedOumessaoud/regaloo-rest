@@ -29,7 +29,7 @@ function registerProduct(row, category, name, price) {
   const plus = document.createElement('b');
   plus.className = 'add-icon';
   plus.setAttribute('aria-hidden', 'true');
-  plus.textContent = '+';
+  plus.textContent = 'Ajouter +';
   button.append(plus);
   button.addEventListener('click', () => {
     cart.set(id, (cart.get(id) || 0) + 1);
@@ -41,8 +41,8 @@ function registerProduct(row, category, name, price) {
 
 const lemonRow = document.createElement('li');
 lemonRow.innerHTML = '<span>Jus de citron</span><i aria-hidden="true"></i><strong>8 dh</strong>';
-document.querySelector('.juice .category ul').append(lemonRow);
 registerProduct(lemonRow, 'Jus', 'Jus de citron', 8);
+document.querySelector('.lemon-order').addEventListener('click', () => lemonRow.querySelector('button').click());
 
 function updateCart() {
   cartItems.replaceChildren();
@@ -87,12 +87,14 @@ function updateCart() {
     cartItems.append(empty);
   }
   cartToggle.textContent = `Voir mon panier (${count}) · ${total} dh`;
+  document.querySelector('.cart-bar').hidden = count === 0;
   totalLabel.textContent = `${total} dh`;
   checkout.disabled = !count;
   document.querySelector('#clear-cart').disabled = !count;
 }
 
 cartToggle.addEventListener('click', () => dialog.showModal());
+document.querySelector('.whatsapp-banner').addEventListener('click', () => dialog.showModal());
 document.querySelector('#close-cart').addEventListener('click', () => dialog.close());
 document.querySelector('#clear-cart').addEventListener('click', () => { cart.clear(); updateCart(); });
 document.querySelector('#delivery-mode').addEventListener('change', event => {

@@ -1,0 +1,64 @@
+/* Header type and a wider, readable desktop menu. */
+header{isolation:isolate;z-index:1}
+.heading p{top:16cqw;right:0;font-family:Arial,sans-serif;font-size:2.8cqw;font-weight:800;line-height:1.08;letter-spacing:.03em;transform:rotate(-9deg);text-align:left}
+.heading em{font-style:normal}
+h1{font-family:"Brush Script MT","Segoe Script",cursive;line-height:1.1}
+.header-rays{right:15cqw;top:1cqw}
+.product-button>span{max-width:none;min-width:0}
+@media(min-width:900px){
+ html,body{background:#171513}
+ body{padding:28px 28px 0}
+ .menu{max-width:1180px;padding:0 30px 35px;border-radius:16px 16px 0 0;box-shadow:0 20px 80px #0008;background-size:100% 100%,100% 100%,100% auto}
+ .menu:before{width:300px;height:220px;top:-100px;left:-70px}
+ .menu:after{width:250px;height:190px;top:-100px;right:-70px}
+ header{height:245px;padding:12px 25px 22px;gap:45px;align-items:center;border-bottom:1px solid #ff790030;margin-bottom:24px}
+ .logo{width:220px;height:210px;flex:none}
+ .heading{height:190px;padding:0;display:flex;align-items:center;position:relative}
+ h1{font-size:154px;letter-spacing:-9px;margin-top:-20px;transform:rotate(-6deg)}
+ .underline{position:absolute;width:300px;height:10px;left:4px;bottom:24px;margin:0;transform:rotate(-6deg)}
+ .heading p{top:48px;right:10px;font-size:22px;line-height:1.15;letter-spacing:.06em;transform:rotate(-6deg)}
+ .header-rays{width:54px;right:160px;top:6px}
+ .food-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 30px;padding:0}
+ .column{display:contents}
+ .category{margin:0;min-width:0}
+ .category-top,.side-photo .category-top{display:flex;flex-direction:column;min-height:0;align-items:stretch}
+ .category-top>img,.side-photo .category-top>img,.column:nth-child(2) .category:first-child .category-top>img,.column:first-child .category:nth-child(4) .category-top>img{width:100%;height:145px;margin:0;object-fit:contain;transform:none;z-index:1}
+ .category h2,.side-photo h2,.column:nth-child(2) .category:last-child h2,.category[data-category="Supplément"] h2{flex:none;white-space:normal;font-size:29px;line-height:1.05;letter-spacing:-.5px;margin:-4px -3px 10px;padding:9px 10px;text-align:center}
+ .category ul,.juice .category ul,.beverages .category ul{margin:0 3px}
+ .category li{font-size:15px;letter-spacing:-.3px;line-height:1.3}
+ .product-button{min-height:37px;padding:3px 0;gap:4px;font-size:15px;line-height:1.3}
+ .product-button>span{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:normal}
+ .product-button>i{min-width:3px}
+ .product-button>strong{font-size:15px;letter-spacing:-.4px;margin-right:2px}
+ .add-icon{width:71px;flex-basis:71px;height:28px;font-size:12px;letter-spacing:-.4px;border-radius:18px}
+ .category[data-category="Salade"]{order:1}.category[data-category="Pizza"]{order:2;grid-row:span 2}.category[data-category="Tacos"]{order:3}.category[data-category="Burger"]{order:4}.category[data-category="Baguetto"]{order:5}.category[data-category="Pactic cio"]{order:6}.category[data-category="Plats"]{order:7}.category[data-category="Sandwich"]{order:8}.category[data-category="Pate"]{order:9}.category[data-category="Supplément"]{order:10}.category[data-category="Crousty"]{order:11}
+ .drinks-grid{grid-template-columns:1fr 1fr;gap:50px;padding:24px 0 0;margin-top:30px;border-top:1px solid #ff790040}
+ .juice h2{width:65%;margin-top:0}
+ .juice .category li{font-size:17px}.juice .product-button{min-height:37px;font-size:17px}.juice .product-button>strong{font-size:17px}
+ .juice-photos{height:190px;margin:5px -20px 0 0}
+ .specials{padding-top:0;gap:4px}.special{height:175px}.special>img{height:180px;width:67%;right:0;bottom:0}
+ .bubble{font-size:23px;padding:18px 22px 24px;border-radius:25px 20px 26px 15px;margin-top:8px}
+ .bubble:after{bottom:-21px;right:30px;border-top-width:28px;border-left-width:17px}
+ .lemon .bubble{margin-left:175px;margin-top:15px}.lemon>img{left:0;width:55%;bottom:0}.lemon-order{right:0;bottom:35px;font-size:44px}
+ .carrot .bubble{margin-left:40px}.beverages{grid-template-columns:1fr 1fr;gap:50px;padding:18px 0 10px;align-items:center}.beverages h2{width:70%}.bottles{height:210px;padding:0 20px;gap:5px}.bottles img{margin-left:0}
+ .whatsapp-banner{width:540px;max-width:90%;padding:12px 28px;border-width:6px;gap:23px;border-radius:100px;margin:30px auto;box-shadow:0 0 0 5px #075d1c,inset 0 0 25px #123c0c70}
+ .whatsapp-banner>svg{width:82px;height:82px}.whatsapp-banner small{font-size:24px}.whatsapp-banner b{font-size:43px;letter-spacing:-1px}.whatsapp-banner .chevron{font-size:65px;margin-left:12px}
+ footer{min-height:180px;padding:25px 0 10px;justify-content:center;gap:10px}footer:after{width:400px;height:240px;right:-190px;bottom:-150px}.delivery{font-size:26px;padding:18px 20px;border-radius:25px 20px 30px 0;margin:0}.arrow{width:65px;height:50px;margin-top:20px}footer a{font-size:32px;gap:8px;padding:20px 25px;margin:0}footer a img{width:34px}footer .scooter{position:relative;width:200px;height:150px;right:auto;bottom:auto}
+ .bottles img,.bottles img:last-child{width:0;min-width:0;flex:1;object-fit:contain}
+ .cart-bar{width:min(calc(100% - 56px),1180px);padding:12px 25px}
+ .menu:has(~ .cart-bar:not([hidden])){padding-bottom:100px}
+}
+@media(min-width:900px) and (max-width:1100px){
+ .menu{padding-left:22px;padding-right:22px}.food-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}.category[data-category="Pizza"]{grid-row:auto}.product-button{font-size:16px;min-height:39px}.category li{font-size:16px}.category-top>img,.side-photo .category-top>img{height:150px}.heading p{font-size:18px;right:-5px}.header-rays{right:100px}.logo{width:185px}header{gap:22px}.heading h1{font-size:135px}.underline{width:265px}footer .scooter{width:160px}footer a{font-size:27px}.delivery{font-size:22px}
+}
+
+/* Use open, legible script lettering instead of tightly overlapping strokes. */
+.heading h1{font-family:"Segoe Script","Segoe Print",cursive;font-size:16cqw;font-weight:600;font-style:normal;letter-spacing:.01em;line-height:1.3;transform:rotate(-5deg);margin:0;text-shadow:none}
+@media(min-width:900px){
+ .heading h1{font-size:112px;letter-spacing:.015em;line-height:1.3;margin-top:-16px}
+ .underline{width:315px;bottom:20px;height:8px}
+}
+@media(min-width:900px) and (max-width:1100px){
+ .heading h1{font-size:96px}
+ .underline{width:270px}
+}
