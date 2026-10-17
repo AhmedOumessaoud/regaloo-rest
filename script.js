@@ -8,6 +8,7 @@ const cartToggle = document.querySelector('#cart-toggle');
 const totalLabel = document.querySelector('#cart-total');
 const form = document.querySelector('#order-form');
 const checkout = document.querySelector('#checkout');
+cartToggle.innerHTML = '<span class="cart-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h4l3 16h15l4-12H8"/><path d="M12 9V5m5 4V3m5 6V5"/><circle cx="12" cy="27" r="2"/><circle cx="24" cy="27" r="2"/></svg><span class="cart-count">0</span></span><span class="cart-label"></span>';
 
 document.querySelectorAll('.category').forEach(section => {
   const category = section.querySelector('h2').textContent.trim();
@@ -34,6 +35,7 @@ function registerProduct(row, category, name, price) {
   button.addEventListener('click', () => {
     cart.set(id, (cart.get(id) || 0) + 1);
     updateCart();
+    animateAdd(button);
     document.querySelector('#order-status').textContent = `${category} — ${name} ajouté au panier`;
   });
   row.append(button);
@@ -42,7 +44,47 @@ function registerProduct(row, category, name, price) {
 const lemonRow = document.createElement('li');
 lemonRow.innerHTML = '<span>Jus de citron</span><i aria-hidden="true"></i><strong>8 dh</strong>';
 registerProduct(lemonRow, 'Jus', 'Jus de citron', 8);
-document.querySelector('.lemon-order').addEventListener('click', () => lemonRow.querySelector('button').click());
+document.querySelector('.lemon-order').addEventListener('click', event => {
+  lemonRow.querySelector('button').click();
+  animateAdd(event.currentTarget);
+});
+
+function animateAdd(button) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const symbol = cartToggle.querySelector('.cart-symbol');
+  const bounce = () => {
+    symbol.getAnimations().forEach(animation => animation.cancel());
+    symbol.animate([
+      {transform:'translateY(0) rotate(0) scale(1)'},
+      {transform:'translateY(-10px) rotate(-12deg) scale(1.18)',offset:.4},
+      {transform:'translateY(2px) rotate(8deg) scale(.95)',offset:.75},
+      {transform:'translateY(0) rotate(0) scale(1)'}
+    ],{duration:500,easing:'ease-out'});
+  };
+  const source = button.closest('.category, .special')?.querySelector('img') || button.closest('.juice, .beverages')?.querySelector('img');
+  if (!button.isConnected) return;
+  if (!source) { bounce(); return; }
+  const start = button.getBoundingClientRect();
+  const end = symbol.getBoundingClientRect();
+  const x = start.left + start.width / 2 - 28;
+  const y = start.top + start.height / 2 - 28;
+  const dx = end.left + end.width / 2 - 28 - x;
+  const dy = end.top + end.height / 2 - 28 - y;
+  const flying = document.createElement('img');
+  flying.src = source.currentSrc || source.src;
+  flying.alt = '';
+  flying.className = 'flying-product';
+  flying.setAttribute('aria-hidden', 'true');
+  flying.style.left = `${x}px`;
+  flying.style.top = `${y}px`;
+  document.body.append(flying);
+  const flight = flying.animate([
+    {transform:'translate(0,0) scale(1)',opacity:1},
+    {transform:`translate(${dx * .45}px,${Math.min(-65, dy * .35 - 50)}px) scale(1.15) rotate(-12deg)`,opacity:1,offset:.4},
+    {transform:`translate(${dx}px,${dy}px) scale(.15) rotate(12deg)`,opacity:.25}
+  ],{duration:650,easing:'cubic-bezier(.3,.05,.7,1)',fill:'forwards'});
+  flight.finished.then(() => { flying.remove(); bounce(); }, () => flying.remove());
+}
 
 function updateCart() {
   cartItems.replaceChildren();
@@ -86,7 +128,9 @@ function updateCart() {
     empty.textContent = 'Votre panier est vide. Touchez + sur le menu pour commencer.';
     cartItems.append(empty);
   }
-  cartToggle.textContent = `Voir mon panier (${count}) · ${total} dh`;
+  cartToggle.querySelector('.cart-label').textContent = `Voir mon panier · ${total} dh`;
+  cartToggle.querySelector('.cart-count').textContent = count;
+  cartToggle.setAttribute('aria-label', `Voir mon panier, ${count} articles, ${total} dh`);
   document.querySelector('.cart-bar').hidden = count === 0;
   totalLabel.textContent = `${total} dh`;
   checkout.disabled = !count;
