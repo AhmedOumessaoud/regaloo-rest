@@ -1,4 +1,9 @@
 /* Header type and a wider, readable desktop menu. */
+@media(max-width:699px){
+ html,body{margin:0;padding:0;background:#111}
+ .menu{width:100%;max-width:none;margin:0;border-radius:0}
+ .cart-bar{width:100%;left:0;transform:none}
+}
 header{isolation:isolate;z-index:1}
 .heading p{top:16cqw;right:0;font-family:Arial,sans-serif;font-size:2.8cqw;font-weight:800;line-height:1.08;letter-spacing:.03em;transform:rotate(-9deg);text-align:left}
 .heading em{font-style:normal}
