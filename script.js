@@ -1,5 +1,5 @@
 /* Change this number if orders should go to another WhatsApp account. */
-const WHATSAPP_NUMBER = '212787142624';
+const WHATSAPP_NUMBER = '212725240109';
 const products = [];
 const cart = new Map();
 const dialog = document.querySelector('#cart-dialog');
